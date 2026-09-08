@@ -1,0 +1,10 @@
+{
+  "name": "cycle",
+  "displayName": "cycle-skill",
+  "description": "개인 프로젝트를 사이클 단위로 굴리는 스킬 묶음 — init · scaffold · propose · plan · do · close · release. 백로그는 GitHub Issues, 문서는 git.",
+  "version": "1.0.0",
+  "author": { "name": "SpiritFlag" },
+  "repository": "https://github.com/SpiritFlag/cycle-skill",
+  "license": "MIT",
+  "keywords": ["cycle", "workflow", "skills", "github-issues"]
+}
