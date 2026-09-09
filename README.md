@@ -28,7 +28,7 @@ propose → plan → do → close        [배포 결정 시] release
 | `/cycle:propose` | 다음 사이클을 정할 때 | 열린 이슈에서 고르고 묶어 항목별로 합의한 뒤 `scope.md` · 마일스톤 · 브랜치를 만든다 | Opus |
 | `/cycle:plan` | scope 뒤 | 사용자용 `plan.md`와 구현용 `design.md` 지시서를 쓰고 검수를 받아 확정한다 | Fable |
 | `/cycle:do` | plan 확정 뒤, 프롬프트마다 | 배치 하나를 구현 · 검증하고 `do.md`에 회차로 기록한다 | Sonnet |
-| `/cycle:close` | 전 배치 검증 뒤 | 보고서 `report.md` · README 대조 · 머지 · 태그 · 이슈 정리 | Opus |
+| `/cycle:close` | 전 배치 검증 뒤 | 보고서 `report.md` · 미실증 SC를 `docs/cycles/RISKS.md`에 · README 대조 · 머지 · 태그 · 이슈 정리 | Opus |
 | `/cycle:release` | 배포를 결정했을 때 | `develop`은 pre-release, `main`은 release. 버전 간 비교 노트 | Opus |
 
 모델은 권장일 뿐이다. 스킬이 모델을 바꾸지 않는다. 세션을 열 때 사용자가 고른다.
