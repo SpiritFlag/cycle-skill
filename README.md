@@ -26,8 +26,8 @@ propose → plan → do → close        [배포 결정 시] release
 | `/cycle:init` | 프로젝트를 세울 때 | 라벨 · 통합 브랜치 · `docs/cycles/` 중 빠진 것을 채우고 검증 명령을 실측해 `CLAUDE.md`에 적는다 | Opus |
 | `/cycle:scaffold` | 한 번 | README(표준 골격) · LICENSE · CONTRIBUTING · `.gitignore` · 이슈 템플릿 | Opus |
 | `/cycle:propose` | 다음 사이클을 정할 때 | 열린 이슈에서 고르고 묶어 항목별로 합의한 뒤 `scope.md` · 마일스톤 · 브랜치를 만든다 | Opus |
-| `/cycle:plan` | scope 뒤 | 사용자용 `plan.md`와 구현용 `do.md` 지시서를 쓰고 검수를 받아 확정한다 | Fable |
-| `/cycle:do` | plan 확정 뒤, 프롬프트마다 | 배치 하나를 구현 · 검증하고 회차로 기록한다 | Sonnet |
+| `/cycle:plan` | scope 뒤 | 사용자용 `plan.md`와 구현용 `design.md` 지시서를 쓰고 검수를 받아 확정한다 | Fable |
+| `/cycle:do` | plan 확정 뒤, 프롬프트마다 | 배치 하나를 구현 · 검증하고 `do.md`에 회차로 기록한다 | Sonnet |
 | `/cycle:close` | 전 배치 검증 뒤 | 보고서 `report.md` · README 대조 · 머지 · 태그 · 이슈 정리 | Opus |
 | `/cycle:release` | 배포를 결정했을 때 | `develop`은 pre-release, `main`은 release. 버전 간 비교 노트 | Opus |
 
@@ -51,8 +51,8 @@ skills/
   init/             SKILL.md, claude-section.template.md
   scaffold/         SKILL.md, readme.standard.md, contributing.template.md, issue.template.md
   propose/          SKILL.md, scope.template.md
-  plan/             SKILL.md, plan.template.md, do.template.md
-  do/               SKILL.md
+  plan/             SKILL.md, plan.template.md, design.template.md
+  do/               SKILL.md, do.template.md
   close/            SKILL.md, report.template.md
   release/          SKILL.md
 docs/design.md      왜 이렇게 만들었나
