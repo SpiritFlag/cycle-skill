@@ -31,6 +31,7 @@ description: "프로젝트를 cycle 체계로 세우거나 옮겨온다 — gh �
 | `CLAUDE.md` | 있나. 있으면 `## cycle` 절이 있나 |
 | `docs/cycles/` | 있나 |
 | 검증 명령 후보 | 테스트 러너 설정 · 테스트 디렉터리 · 패키지 스크립트 · CI 워크플로 · Makefile. 프로젝트 종류(Unity · Node · Python · 문서 전용 등)를 판정한다 |
+| CI 워크플로 | `.github/workflows/`. 있으면 어느 브랜치 · 이벤트에 걸려 있나. 기본은 통합 · 릴리즈 브랜치 푸시다. 사이클 브랜치(`v*-*`)나 모든 브랜치에 걸려 있으면 do가 푸시할 때마다 돌게 되니 빼기를 권한다. 안내만 하고 워크플로 파일은 건드리지 않는다 |
 | 버전 파일 | `package.json` · `ProjectSettings.asset` · `plugin.json` 등 버전이 적히는 곳. 종료 훅 후보다 |
 | 이전 체계 흔적 | `docs/PDCA/` · `docs/RULE.md` · `.pdcarc.json` · `.env.local`의 `PDCAW_PAT`. 있으면 **이식 모드**다 |
 

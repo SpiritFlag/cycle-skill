@@ -70,11 +70,11 @@ argument-hint: "<develop|main> [태그]"
 ## 5. 발행
 
 ```
-gh release create {태그} --title "{제품명} {태그}" --notes-file {임시 노트} --prerelease      # develop
-gh release create {태그} --title "{제품명} {태그}" --notes-file {임시 노트} --latest          # main
+gh release create {태그} --title "{태그}" --notes-file {임시 노트} --prerelease      # develop
+gh release create {태그} --title "{태그}" --notes-file {임시 노트} --latest          # main
 ```
 
-임시 노트는 스크래치 경로에 쓰고 발행 뒤 지운다. 같은 태그에 pre-release가 이미 있고 main 모드면 `gh release edit {태그} --prerelease=false --latest --notes-file …`로 승격한다.
+제목은 태그만이다. 제품명은 노트 첫 줄에 있다. 임시 노트는 스크래치 경로에 쓰고 발행 뒤 지운다. 같은 태그에 pre-release가 이미 있고 main 모드면 `gh release edit {태그} --prerelease=false --latest --notes-file …`로 승격한다.
 
 ## 6. 보고
 
