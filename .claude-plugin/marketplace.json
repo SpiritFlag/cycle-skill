@@ -7,7 +7,7 @@
       "name": "cycle",
       "source": "./",
       "description": "개인 프로젝트를 사이클 단위로 굴리는 스킬 묶음. 백로그는 GitHub Issues, 문서는 git.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }
