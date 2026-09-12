@@ -13,12 +13,12 @@
 
 - `main` 릴리즈. 태그로만 전진한다.
 - `develop` 통합. 작은 수정은 여기 바로 커밋한다. 이슈에서 나온 것이면 커밋 메시지에 `closes #n`.
-- `{버전}-{사이클명}` 사이클 작업. 닫힐 때 `develop`에 머지되고 머지 커밋에 태그가 붙는다.
+- `{버전}-{사이클명}` 사이클 작업. 배치마다 `B-n: {이름}` 커밋. 닫힐 때 `develop`에 머지되고 머지 커밋에 태그가 붙는다.
 
 ## 사이클
 
-`/cycle:propose → /cycle:plan → /cycle:do → /cycle:close`. 각 단계의 절차는 스킬이 정본이다. 이 프로젝트의 검증 명령 · 브랜치 · 훅은 `CLAUDE.md`의 `cycle` 절에 있다.
+`/cycle:start #n …` → 배치마다 "다음" → `/cycle:close`. 끊기면 `/cycle:resume`. 사이클 하나가 세션 하나다. 각 단계의 절차는 스킬이 정본이다. 지금 이 시스템이 어떻게 동작하는지는 `docs/SPEC.md`(있을 때). 이 프로젝트의 검증 명령 · 브랜치 · 훅은 `CLAUDE.md`의 `cycle` 절에 있다.
 
 ## 커밋 메시지
 
-`{단계}: {한 줄}`. 단계는 `scope` `plan` `do` `close` 또는 일반 접두(`fix` `docs` `chore`).
+`{단계}: {한 줄}`. 단계는 `start` `B-n` `close` 또는 일반 접두(`fix` `docs` `chore`).

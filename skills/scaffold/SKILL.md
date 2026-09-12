@@ -38,7 +38,7 @@ description: "레포의 기본 파일을 표준 양식으로 깐다 — README(�
 
 ## 5. 이슈 템플릿
 
-`.github/ISSUE_TEMPLATE/backlog.md`가 없으면 `${CLAUDE_SKILL_DIR}/issue.template.md`로 만든다. 웹에서 만든 이슈도 같은 골격이 되게 하는 장치다. `propose`가 이 골격을 전제로 읽는다.
+`.github/ISSUE_TEMPLATE/backlog.md`가 없으면 `${CLAUDE_SKILL_DIR}/issue.template.md`로 만든다. 웹에서 만든 이슈도 같은 골격이 되게 하는 장치다. `start`가 이 골격을 전제로 읽는다.
 
 ## 6. 보고
 
