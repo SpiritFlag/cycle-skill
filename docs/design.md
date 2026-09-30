@@ -37,7 +37,7 @@ cycle은 이슈를 **고르지 않는다.** 만드는 것은 close가 사용자�
 | P1 | 정본은 git, 백로그는 GitHub Issues | 사이클 문서는 레포에 있다. 백로그 · 마일스톤 · 릴리즈는 GitHub이 맡고 스킬은 `gh`로만 만진다. 자체 서버 · 설정 파일 · 토큰 파일은 없다 |
 | P2 | 문서는 독자로 정의한다 | 절마다 독자가 있고 상한이 있다. 독자 없는 절은 없앤다. 같은 독자에게 같은 내용을 두 곳에 쓰지 않는다. README도 예외가 아니다 |
 | P3 | 검증은 배치가 한다 | 배치 범위만. 전체 검증은 close가 한 번. 수단을 낮추지 않는다. 미실증 종류는 사용자만 정한다 |
-| P4 | **사이클 하나 = 세션 하나** | Opus 한 세션으로 start부터 close까지. 끊기면 resume. 서브에이전트 없음 |
+| P4 | **사이클 하나 = 세션 하나** | 선택한 에이전트의 한 세션으로 start부터 close까지. Codex · Claude Code 모두 같다. 끊기면 resume. 서브에이전트 없음 |
 | P5 | 의식적 형식 금지 | 고정 개수 선택지, 합산 수치, 개정마다 자라는 요약, 통과를 선언하기 위한 게이트 표, 감사를 위한 감사를 두지 않는다. 전제조건은 조용히 확인하고 막힐 때만 말한다 |
 | P6 | 판단은 사용자 | 범위 · 미실증 · 폐기 · 발견 승격 |
 | P7 | 산출물에서 사용자는 "사용자" | 이름 · 호칭 · 대화체를 쓰지 않는다. 사용자의 말을 원문 그대로 인용하지 않고 감싼다("사용자가 만족했다") |
@@ -153,7 +153,7 @@ SC를 수단대로 볼 수 없는 일이 생긴다. 실제 사건 유발, 동시
 
 원격 CI는 통합 · 릴리즈 브랜치 푸시에 걸린 것으로 본다. 사이클 브랜치에도 걸려 있으면 배치 커밋을 푸시할 때마다 돌게 되므로 init이 빼기를 권한다.
 
-## 6. 백로그 · 브랜치 · README · CLAUDE.md
+## 6. 백로그 · 브랜치 · README · 프로젝트 규칙 파일
 
 ### 6.1 백로그 = GitHub Issues
 
@@ -189,7 +189,7 @@ main    ────────────────────────
 - `main` 보호. 태그로 `--ff-only`만. release가 배포 시점에만 전진시킨다.
 - `develop` 통합. 사이클 머지 커밋과 작은 수정 커밋. 태그는 머지 커밋에.
 - `{버전}-{이름}` 작업. 배치마다 `B-n: {이름}` 커밋.
-- 브랜치 이름이 다르면 `CLAUDE.md` `## cycle` 절에 적는다.
+- 브랜치 이름이 다르면 프로젝트 규칙 파일의 `## cycle` 절에 적는다.
 
 버전은 start에서 정한다. 사이클은 minor, major는 사용자가 새 시대를 열 때만. 작은 수정만 쌓여 릴리즈할 땐 patch.
 
@@ -203,9 +203,11 @@ main    ────────────────────────
 
 README 외 기본 파일(LICENSE · CONTRIBUTING · `.gitignore` · 이슈 템플릿)은 scaffold가 한 번 만들고 다시 건드리지 않는다. CHANGELOG는 만들지 않는다. GitHub Release가 대신한다.
 
-### 6.4 프로젝트별 규칙 — `CLAUDE.md`
+### 6.4 프로젝트별 규칙 — `AGENTS.md` · `CLAUDE.md`
 
-스킬 전용 규칙 파일은 없다. 프로젝트별 규칙이 사는 자리는 이미 `CLAUDE.md`이고, 세션마다 자동으로 읽히므로 스킬이 "그 파일을 읽어라"를 기억할 필요도 없다. `init`이 `## cycle` 절 하나를 붙인다.
+스킬 전용 규칙 파일은 없다. Codex는 저장소 루트의 `AGENTS.md`, Claude Code는 루트의 `CLAUDE.md`를 쓴다. `init`이 `## cycle` 절 하나를 붙이고 각 스킬이 그 절을 확인한다. 실행 환경 차이는 `skills/runtime.md`가 정본이다.
+
+환경을 바꿀 때 기존 절은 후보로 재사용하되 `init`이 검증 명령을 다시 실측해 현재 환경의 파일에 반영한다. 양쪽 절이 다르면 현재 환경의 파일을 기준으로 삼고 차이를 알린다. 다른 파일을 자동으로 덮어쓰지 않는다. 두 환경을 함께 쓰면 규칙 변경 시 두 절을 맞춘다.
 
 - 검증 명령 — 이 프로젝트에서 SC에 붙일 수 있는 수단과 명령. `init`이 실측하고 실제로 돌려 본 뒤 문답으로 세운다. 이 절의 핵심이다.
 - 브랜치 — `develop` → `main` ff-only가 아닐 때만.
@@ -222,10 +224,12 @@ README 외 기본 파일(LICENSE · CONTRIBUTING · `.gitignore` · 이슈 템�
 | `resume` | 범위 절, 미완 배치 행, `git log` | 없음(이어지는 배치가 쓴다) | 문서 전체 읽기, 배치 다시 짜기 |
 | `close` | 사이클 문서, diff, 열린 이슈 | 결과 절, `SPEC.md`, `RISKS.md`, README, 태그, 이슈 상태 · 이월 이슈 본문 · 제목 · 라벨, 확인받은 새 이슈 · 범위 밖 해결 이슈, 마일스톤 설명 | 감사, 릴리즈, 백로그 고르기, 확인 없는 새 이슈 · 이슈 닫기, `not planned` |
 | `release` | `gh release list`, 태그 간 diff | GitHub Release, `main` 전진 | 사이클 문서, 이슈, 노트 파일 |
-| `init` | 저장소, `gh auth status`, 이전 체계 흔적 | 라벨, `CLAUDE.md` `## cycle` 절, `docs/cycles/`, `develop` | 있는 것 덮어쓰기, `CLAUDE.md` 다른 절 수정 |
+| `init` | 저장소, `gh auth status`, 이전 체계 흔적 | 라벨, 프로젝트 규칙 파일의 `## cycle` 절, `docs/cycles/`, `develop` | 있는 것 덮어쓰기, 프로젝트 규칙 파일의 다른 절 수정 |
 | `scaffold` | 저장소 | README(표준), LICENSE, CONTRIBUTING, `.gitignore`, 이슈 템플릿 | 있는 파일 덮어쓰기(README는 표준 대조 후 사용자 확인) |
 
-호출은 `/cycle:<스킬>`이다. 배치 루프의 절차는 `skills/start/batch.md` 하나에 있고 start와 resume이 같이 읽는다.
+Claude Code 호출은 `/cycle:<스킬>`, Codex는 `$` 선택기에서 cycle 소속 스킬을 선택한다. 배치 루프의 절차는 `skills/start/batch.md` 하나에 있고 start와 resume이 같이 읽는다. 템플릿과 공통 리소스는 각 `SKILL.md` 기준의 상대 경로로 읽는다.
+
+Claude Code 배포는 `.claude-plugin/`, Codex 배포는 `.codex-plugin/plugin.json`과 `.agents/plugins/marketplace.json`을 쓴다. 두 매니페스트는 같은 `skills/`를 제공한다. GitHub 원격 설치를 배포하기 전 플러그인 버전과 Claude 마켓플레이스 버전을 함께 맞춘다. 자체 마켓플레이스 등록과 공개 플러그인 디렉터리 게시는 별개이며, 공개 게시는 별도 제출 · 심사를 거친다.
 
 ## 8. 폐기 (1.x 대비)
 

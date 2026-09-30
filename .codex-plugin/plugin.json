@@ -1,0 +1,13 @@
+{
+  "name": "cycle",
+  "version": "2.1.0",
+  "description": "개인 프로젝트를 사이클 단위로 굴리는 한국어 스킬 묶음 — init · scaffold · start · resume · close · release.",
+  "author": { "name": "SpiritFlag" },
+  "repository": "https://github.com/SpiritFlag/cycle-skill",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "cycle-skill",
+    "shortDescription": "GitHub 이슈부터 배치 구현 · 검증 · 릴리즈까지 이어가는 개인 개발 사이클"
+  }
+}

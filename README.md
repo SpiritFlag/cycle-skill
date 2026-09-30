@@ -1,6 +1,6 @@
 # cycle-skill
 
-Claude Code로 개인 프로젝트를 사이클 단위로 굴리는 스킬 묶음. 한국어 전용.
+Codex와 Claude Code로 개인 프로젝트를 사이클 단위로 굴리는 스킬 묶음. 한국어 전용.
 
 ## 이게 뭔가
 
@@ -12,42 +12,66 @@ start #n … → "다음" × 배치 → close        [끊기면] resume   [배�
 
 ## 설치
 
+Codex CLI — 로컬에서 설치:
+
+```sh
+codex plugin marketplace add .
+codex plugin add cycle@spiritflag-cycle
 ```
+
+Codex CLI — GitHub에서 설치:
+
+```sh
+codex plugin marketplace add SpiritFlag/cycle-skill
+codex plugin add cycle@spiritflag-cycle
+```
+
+Codex 데스크톱은 이 저장소를 연 뒤 앱을 재시작하고 플러그인 목록에서 **SpiritFlag Cycle** 소스의 **cycle-skill**을 설치한다.
+
+Claude Code:
+
+```text
 /plugin marketplace add SpiritFlag/cycle-skill
 /plugin install cycle@spiritflag-cycle
 ```
 
-`gh auth status`가 통과해야 한다.
+`git` · `gh`가 설치되어 있고 `gh auth status`가 통과해야 한다.
 
 ## 사용
 
-| 스킬 | 언제 | 하는 일 |
+| Codex | Claude Code | 언제 |
 |---|---|---|
-| `/cycle:init` | 프로젝트를 세울 때 | 라벨 · 통합 브랜치 · `docs/cycles/` 중 빠진 것을 채우고 검증 명령을 실측해 `CLAUDE.md`에 적는다 |
-| `/cycle:scaffold` | 한 번 | README(표준 골격) · LICENSE · CONTRIBUTING · `.gitignore` · 이슈 템플릿 |
-| `/cycle:start #n …` | 사이클을 열 때 | 이슈를 읽고 항목별로 범위를 합의한 뒤 사이클 문서 · 마일스톤 · 브랜치를 만들고 B-1에 착수한다 |
-| "다음" | 배치마다 | 배치 하나를 구현 · 검증 · 커밋한다. 스킬이 아니라 프롬프트다 |
-| `/cycle:resume` | 세션이 끊겼을 때 | 범위 절 · 미완 배치 · git log만 보고 다음 배치부터 잇는다 |
-| `/cycle:close` | 전 배치 뒤 | 전체 검증 · 결과 절 · `docs/SPEC.md` 흡수 · `docs/cycles/RISKS.md` · README 대조 · 머지 · 태그 · 이슈 정리 |
-| `/cycle:release` | 배포를 결정했을 때 | `develop`은 pre-release, `main`은 release. 버전 간 비교 노트 |
+| `$cycle:init` | `/cycle:init` | 프로젝트를 cycle 체계로 세울 때 |
+| `$cycle:scaffold` | `/cycle:scaffold` | 기본 파일을 깔 때 |
+| `$cycle:start #n …` | `/cycle:start #n …` | 받은 이슈로 사이클을 열 때 |
+| "다음" | "다음" | 다음 배치를 구현 · 검증 · 커밋할 때 |
+| `$cycle:resume` | `/cycle:resume` | 끊긴 사이클을 이을 때 |
+| `$cycle:close` | `/cycle:close` | 전 배치가 끝났을 때 |
+| `$cycle:release develop` | `/cycle:release develop` | 검수용 배포를 결정했을 때 |
+| `$cycle:release main` | `/cycle:release main` | 정식 배포를 결정했을 때 |
+
+Codex는 `$` 선택기에서 **cycle 플러그인 소속 스킬**을 선택한다. 프로젝트 규칙은 Codex의 `AGENTS.md`, Claude Code의 `CLAUDE.md` 안에 있는 `## cycle` 절에 둔다. 환경을 바꾸면 `init`으로 기존 절을 점검해 옮긴다.
 
 한 바퀴는 이렇게 친다. 한 세션이다.
 
 ```
-/cycle:start #52 #89
+$cycle:start #52 #89
 다음
 다음
 …
-/cycle:close
-/cycle:release develop
+$cycle:close
+$cycle:release develop
 ```
 
 ## 구조
 
 ```
-.claude-plugin/     플러그인 · 마켓플레이스 매니페스트
+.agents/plugins/   Codex 마켓플레이스
+.codex-plugin/     Codex 플러그인 매니페스트
+.claude-plugin/    Claude Code 플러그인 · 마켓플레이스 매니페스트
 skills/
-  init/             SKILL.md, claude-section.template.md
+  runtime.md        실행 환경 · 프로젝트 규칙 파일 · 리소스 경로
+  init/             SKILL.md, cycle-section.template.md
   scaffold/         SKILL.md, readme.standard.md, contributing.template.md, issue.template.md
   start/            SKILL.md, cycle.template.md, batch.md
   resume/           SKILL.md

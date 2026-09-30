@@ -17,7 +17,7 @@
 
 ## 사이클
 
-`/cycle:start #n …` → 배치마다 "다음" → `/cycle:close`. 끊기면 `/cycle:resume`. 사이클 하나가 세션 하나다. 각 단계의 절차는 스킬이 정본이다. 지금 이 시스템이 어떻게 동작하는지는 `docs/SPEC.md`(있을 때). 이 프로젝트의 검증 명령 · 브랜치 · 훅은 `CLAUDE.md`의 `cycle` 절에 있다.
+Codex는 `$cycle:start #n …` → "다음" → `$cycle:close`, 끊기면 `$cycle:resume`. Claude Code는 `/cycle:start #n …` → 배치마다 "다음" → `/cycle:close`. 끊기면 `/cycle:resume`. 사이클 하나가 세션 하나다. 각 단계의 절차는 스킬이 정본이다. 지금 이 시스템이 어떻게 동작하는지는 `docs/SPEC.md`(있을 때). 이 프로젝트의 검증 명령 · 브랜치 · 훅은 프로젝트 규칙 파일(Codex는 `AGENTS.md`, Claude Code는 `CLAUDE.md`)의 `cycle` 절에 있다.
 
 ## 커밋 메시지
 

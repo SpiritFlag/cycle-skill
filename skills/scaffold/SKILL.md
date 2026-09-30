@@ -1,9 +1,11 @@
 ---
 name: scaffold
-description: "레포의 기본 파일을 표준 양식으로 깐다 — README(표준 골격), LICENSE, CONTRIBUTING, .gitignore, GitHub 이슈 템플릿. 있는 파일은 건드리지 않되 README만은 표준과 대조해 고칠 곳을 보여주고 확인받는다. 사용자가 '/cycle:scaffold'라고 부르거나 'README 표준대로 정리해줘', '기본 파일 깔아줘'라고 하면 쓴다."
+description: "레포의 기본 파일을 표준 양식으로 깐다 — README(표준 골격), LICENSE, CONTRIBUTING, .gitignore, GitHub 이슈 템플릿. 있는 파일은 건드리지 않되 README만은 표준과 대조해 고칠 곳을 보여주고 확인받는다. 사용자가 '$cycle:scaffold (Codex) 또는 /cycle:scaffold'라고 부르거나 'README 표준대로 정리해줘', '기본 파일 깔아줘'라고 하면 쓴다."
 ---
 
 # scaffold
+
+작업 전에 [실행 환경](../runtime.md)을 읽는다. 프로젝트 규칙 파일 · 호출 방식 · 리소스 경로는 그 기준을 따른다.
 
 기본 파일을 한 번 깐다. **README만 살아 있는 문서**라 표준과 대조하고, 나머지는 있으면 건드리지 않는다.
 
@@ -15,11 +17,11 @@ description: "레포의 기본 파일을 표준 양식으로 깐다 — README(�
 
 ## 0. 실측
 
-`ls` · `find . -maxdepth 2`로 프로젝트 종류(언어 · 엔진 · 빌드 도구)와 이미 있는 파일을 본다. 제품명 · 톤은 `CLAUDE.md`의 `## cycle` 절에 있으면 그것.
+`rg --files --hidden -g !.git` 또는 PowerShell `Get-ChildItem -Force`로 프로젝트 종류(언어 · 엔진 · 빌드 도구)와 이미 있는 파일을 본다. 제품명 · 톤은 프로젝트 규칙 파일의 `## cycle` 절에 있으면 그것.
 
 ## 1. README
 
-정본은 `${CLAUDE_SKILL_DIR}/readme.standard.md`다. 읽고 그대로 따른다.
+정본은 `readme.standard.md`다. 읽고 그대로 따른다.
 
 - **없으면** 골격대로 쓴다. 각 절은 실측으로 채운다. 모르는 것은 `{…}`로 남기지 말고 사용자에게 묻는다.
 - **있으면** 표준의 기계 대조 · 사람 대조를 돌린다. 걸린 것을 `절 · 무엇이 · 어디로 가야 하나` 표로 보여준다. 사용자가 확인하면 골격에 맞춰 다시 쓴다. 밀려나는 내용은 버리지 않고 어디로 옮길지(`docs/design.md` · CONTRIBUTING · Release)를 함께 적는다.
@@ -30,7 +32,7 @@ description: "레포의 기본 파일을 표준 양식으로 깐다 — README(�
 
 ## 3. CONTRIBUTING
 
-없으면 `${CLAUDE_SKILL_DIR}/contributing.template.md`로 만든다. 이 파일이 "이 레포는 cycle 체계를 따른다"를 말하는 자리다. 이슈를 어떻게 쓰는지, 브랜치가 어떻게 흐르는지 한 화면.
+없으면 `contributing.template.md`로 만든다. 이 파일이 "이 레포는 cycle 체계를 따른다"를 말하는 자리다. 이슈를 어떻게 쓰는지, 브랜치가 어떻게 흐르는지 한 화면.
 
 ## 4. .gitignore
 
@@ -38,7 +40,7 @@ description: "레포의 기본 파일을 표준 양식으로 깐다 — README(�
 
 ## 5. 이슈 템플릿
 
-`.github/ISSUE_TEMPLATE/backlog.md`가 없으면 `${CLAUDE_SKILL_DIR}/issue.template.md`로 만든다. 웹에서 만든 이슈도 같은 골격이 되게 하는 장치다. `start`가 이 골격을 전제로 읽는다.
+`.github/ISSUE_TEMPLATE/backlog.md`가 없으면 `issue.template.md`로 만든다. 웹에서 만든 이슈도 같은 골격이 되게 하는 장치다. `start`가 이 골격을 전제로 읽는다.
 
 ## 6. 보고
 
